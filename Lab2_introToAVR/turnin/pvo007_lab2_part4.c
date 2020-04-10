@@ -20,17 +20,23 @@ int main(void) {
 	DDRD = 0xFF; PORTD = 0x00;
 	unsigned char overweight = 0x00;
 	unsigned char notBalance = 0x00;
+	unsigned char carA = 0x00;
+	unsigned char carB = 0x00;
+	unsigned char carC = 0x00;
+	unsigned short totalweight = 0x0000;
 	while(1) {
-		if((PINA + PINB + PINC) > 140) {
+		carA = PINA;
+		carB = PINB;
+		carC = PINC;
+		
+		totalweight = PINA + PINB + PINC;
+		if(abs((PINA - PINC)) >= 0x50) {
+			notBalance = 0x02;
+		}
+		if(totalweight >= 0x008C) {
 			overweight = 0x01;
 		}
-		if(PINA-PINC > 80) {
-			notBalance = 0x02;
-		}
-		if(PINC-PINA > 80) {
-			notBalance = 0x02;
-		}
-
+				
 		PORTD = overweight | notBalance; //0b00010000 = approxweight is between 80 and 100 kg
 		
 	}
