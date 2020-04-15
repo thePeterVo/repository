@@ -11,12 +11,11 @@
 #ifdef _SIMULATE_
 #include "simAVRHeader.h"
 #endif
-#include "RIMS.h"
 
 enum States {start, state1, state2, state3, state4} state;
-void Tick {
+void Tick() {
 	switch(state) {
-		case Start:
+		case start:
 			state = state1;
 			break;
 		case state1:
@@ -71,7 +70,7 @@ void Tick {
 int main(void) {
 	DDRA = 0x00; PORTA = 0xFF;
 	DDRB = 0xFF; PORTB = 0x00;
-	state = Start;
+	state = start;
 	while (1) {
 		Tick();
     	}		
