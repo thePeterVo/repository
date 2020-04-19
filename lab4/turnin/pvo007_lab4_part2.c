@@ -42,7 +42,7 @@ void Tick() {
 			if(((PINA & 0x03) == 0x01) || ((PINA & 0x03) == 0x02)) {
 				state = state4;
 			}
-			else if((~PINA & 0x03) == 0x03) {
+			else if((PINA & 0x03) == 0x03) {
 				state = state5;
 			}
 			else {
