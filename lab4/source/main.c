@@ -12,7 +12,7 @@
 #include "simAVRHeader.h"
 #endif
 
-enum States {start, check1, check2, open} state;
+enum States {start, check1, check2, check3, open} state;
 void Tick() {
 	switch(state) {
 		case start:
@@ -27,6 +27,13 @@ void Tick() {
 			}
 			break;
 		case check2:
+			if(PINA == 0x00) {
+				state = check3;
+			}
+			else {
+				state = start;
+			}
+		case check3:
 			if(PINA == 0x02) {
 				state = open;
 			}
@@ -52,6 +59,8 @@ void Tick() {
 		case check1:
 			break;
 		case check2:
+			break;
+		case check3:
 			break;
 		case open:
 			PORTB = 0x01;
