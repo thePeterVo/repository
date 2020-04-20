@@ -37,11 +37,11 @@ void Tick() {
 			if(PINA == 0x02) {
 				state = open;
 			}
-			else if(PINA == 0x00) {
-				state = check3;
+			else if(PINA == 0x01) {
+				state = start;
 			}
 			else {
-				state = start;
+				state = check3;
 			}
 			break;
 		case open:
